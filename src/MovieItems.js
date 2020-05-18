@@ -5,16 +5,17 @@ export default class MovieItems extends Component {
         super(props)
     }
     render() {
+        const {id, poster_src, title, overview} = this.props.movie
         return (
-           <table>
+           <table key={id} style={{textAlign: 'left'}}>
                <tbody>
                    <tr>
                        <td>
-                        <img src={this.props.movie.poster_src}></img>
+                        <img src={poster_src}></img>
                        </td>
                        <td>
-                        <strong>{this.props.movie.title}</strong>
-                        <p>{this.props.movie.overview}</p>
+                        <strong>{title}</strong>
+                        <p>{overview}</p>
                        </td>
                    </tr>
                </tbody>
