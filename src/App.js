@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Axios from 'axios'
 
 function App() {
+
+  const [result, setResult] = useState({rows: [{title: 'mils'}, {title: 'eiei'}]});
+
+  let search = (keyword) => {
+    console.log(keyword)
+    let dataArray = []
+    let url = 'https://api.themoviedb.org/3/search/movie?api_key=57e4e92e33bba504433d66ef2993cf30&language=en-US&page=1&include_adult=false&query=' + keyword
+    Axios.get(url).then(result => {
+      result.data.results.forEach(item => {
+        dataArray.push(item)
+      })
+
+      setResult({rows :dataArray})
+    })
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <table className="NavBar">
+        <tbody>
+          <tr>
+            <td>
+              <img src={require('./assets/logo.svg')} width="50" />
+            </td>
+            <td>
+              Mesodiar
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <input style={{ fontSize: 24, display: 'block', width: '100%', paddingLeft: 8 }} placeholder="Enter your movie keyword" onChange={(event) => {search(event.target.value)}} />
+      { result.rows.map(item => (
+          <div>{ item.title }</div>
+      )) }
     </div>
   );
 }
