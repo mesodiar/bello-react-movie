@@ -5,7 +5,7 @@ import MovieItems from './MovieItems';
 
 function App() {
 
-  const [result, setResult] = useState({rows: [{title: 'mils'}, {title: 'eiei'}]});
+  const [result, setResult] = useState({rows: []});
 
   let search = (keyword) => {
     console.log(keyword)
