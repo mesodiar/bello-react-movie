@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Axios from 'axios'
 import MovieItems from './MovieItems';
 
 function App() {
-
   const [result, setResult] = useState({rows: []});
+
 
   let search = (keyword) => {
     console.log(keyword)
@@ -20,6 +20,8 @@ function App() {
       setResult({rows :dataArray})
     })
   }
+
+  useEffect(()=> search('her'))
 
   return (
     <div className="App">
